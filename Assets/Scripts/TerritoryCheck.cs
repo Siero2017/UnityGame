@@ -1,16 +1,15 @@
 using UnityEngine;
-using UnityEngine.Events;
 
 public class TerritoryCheck : MonoBehaviour
 {
-    [SerializeField] private UnityEvent _playerInside;
-    [SerializeField] private UnityEvent _playerOutside;
+    public delegate void AlarmSystem(bool isActive);   
+    public event AlarmSystem SomebodyWentHouse;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.TryGetComponent<Player>(out Player player))
         {
-            _playerInside.Invoke();
+            SomebodyWentHouse?.Invoke(true);
         }
     }
 
@@ -18,7 +17,7 @@ public class TerritoryCheck : MonoBehaviour
     {
         if (other.gameObject.TryGetComponent<Player>(out Player player))
         {
-            _playerOutside.Invoke();
+            SomebodyWentHouse?.Invoke(false);
         }
     }
 }
