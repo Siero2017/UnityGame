@@ -12,6 +12,7 @@ public class Alarm : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
         _territoryCheck = GetComponent<TerritoryCheck>();
         _territoryCheck.SomebodyWentHouse += AlarmActivation;
+        _audioSource.Play();
     }
 
     private void OnDisable()
@@ -23,11 +24,17 @@ public class Alarm : MonoBehaviour
     {
         if (somebodyEnteredOnTerritory)
         {
-            _audioSource.Play();
+            while (_audioSource.volume != 1)
+            {
+                _audioSource.volume += Time.deltaTime;
+            }
         }
         else
         {
-            _audioSource.Pause();
+            while (_audioSource.volume != 0)
+            {
+                _audioSource.volume -= Time.deltaTime;
+            }
         }
     }
 }

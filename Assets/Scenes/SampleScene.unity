@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 83847441}
   - component: {fileID: 83847440}
   - component: {fileID: 83847439}
+  - component: {fileID: 83847442}
   m_Layer: 0
   m_Name: Alarm
   m_TagString: Untagged
@@ -168,36 +169,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41b190e76c1edeb43be62843ecf46b95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerInside:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 83847441}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  _playerOutside:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 83847441}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: Pause
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!65 &83847440
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -307,6 +278,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &83847442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 83847437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72db0977e2151a24d9973081e4b0faec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &164446274
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1079,18 +1062,6 @@ CapsuleCollider:
   m_Height: 1.4626256
   m_Direction: 1
   m_Center: {x: -0.00696373, y: 2.4359164, z: -0.06875497}
---- !u!114 &210354946
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 210354942}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfa36582864d39b4b8b265bec4cc94e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &284261268 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -3286910004361259421, guid: 8032094483a8f97459de0b21c8138a50, type: 3}

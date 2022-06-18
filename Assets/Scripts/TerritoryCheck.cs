@@ -8,7 +8,7 @@ public class TerritoryCheck : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.TryGetComponent<Player>(out Player player))
-        {
+        {            
             SomebodyWentHouse?.Invoke(true);
         }
     }
