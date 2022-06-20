@@ -2,17 +2,17 @@ using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
-[RequireComponent(typeof(TerritoryCheck))]
+[RequireComponent(typeof(Detector))]
 public class Alarm : MonoBehaviour
 {
     private AudioSource _audioSource;
-    private TerritoryCheck _territoryCheck;
+    private Detector _territoryCheck;
     private Coroutine _processChangeVolume;   
 
     private void Start()
     {
         _audioSource = GetComponent<AudioSource>();
-        _territoryCheck = GetComponent<TerritoryCheck>();
+        _territoryCheck = GetComponent<Detector>();
         _territoryCheck.SomebodyWentHouse += AlarmActivation;
         _audioSource.Play();
     }
