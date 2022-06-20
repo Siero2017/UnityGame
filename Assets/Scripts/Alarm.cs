@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
@@ -6,6 +7,7 @@ public class Alarm : MonoBehaviour
 {
     private AudioSource _audioSource;
     private TerritoryCheck _territoryCheck;
+    private Coroutine _processChangeVolume;   
 
     private void Start()
     {
@@ -22,18 +24,37 @@ public class Alarm : MonoBehaviour
 
     private void AlarmActivation(bool somebodyEnteredOnTerritory)
     {
+        if (_processChangeVolume != null)
+        {
+            StopCoroutine(_processChangeVolume);
+        }
+
+        _processChangeVolume = StartCoroutine(AlarmActivationCoroutine(somebodyEnteredOnTerritory));
+    }
+
+    private IEnumerator AlarmActivationCoroutine(bool somebodyEnteredOnTerritory)
+    {
+        float durationTranstion = 2f;
+        float runningTime = 0f;
+
         if (somebodyEnteredOnTerritory)
         {
             while (_audioSource.volume != 1)
             {
-                _audioSource.volume += Time.deltaTime;
+                runningTime += Time.deltaTime;
+                _audioSource.volume = runningTime / durationTranstion;
+                yield return null;
             }
         }
         else
         {
-            while (_audioSource.volume != 0)
+            runningTime = 2f;
+
+            while(_audioSource.volume != 0)
             {
-                _audioSource.volume -= Time.deltaTime;
+                runningTime -= Time.deltaTime;
+                _audioSource.volume = runningTime / durationTranstion;
+                yield return null;
             }
         }
     }

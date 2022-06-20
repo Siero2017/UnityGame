@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class TerritoryCheck : MonoBehaviour
 {
-    public delegate void AlarmSystem(bool isActive);   
+    public delegate void AlarmSystem(bool isActive);
     public event AlarmSystem SomebodyWentHouse;
 
     private void OnTriggerEnter(Collider other)
