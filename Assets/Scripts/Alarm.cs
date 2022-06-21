@@ -13,26 +13,26 @@ public class Alarm : MonoBehaviour
     {
         _audioSource = GetComponent<AudioSource>();
         _territoryCheck = GetComponent<Detector>();
-        _territoryCheck.SomebodyWentHouse += ActivateAlarm;
+        _territoryCheck.SomebodyWentHouse += OnSomebodyWentHouse;
         _audioSource.Play();
     }
 
     private void OnDisable()
     {
-        _territoryCheck.SomebodyWentHouse -= ActivateAlarm;
+        _territoryCheck.SomebodyWentHouse -= OnSomebodyWentHouse;
     }
 
-    private void ActivateAlarm(bool somebodyEnteredOnTerritory)
+    private void OnSomebodyWentHouse(bool somebodyEnteredOnTerritory)
     {
         if (_processChangeVolume != null)
         {
             StopCoroutine(_processChangeVolume);
         }
 
-        _processChangeVolume = StartCoroutine(ChangeVolume(somebodyEnteredOnTerritory));
+        _processChangeVolume = StartCoroutine(ActivateAlarm(somebodyEnteredOnTerritory));
     }
 
-    private IEnumerator ChangeVolume(bool somebodyEnteredOnTerritory)
+    private IEnumerator ActivateAlarm(bool somebodyEnteredOnTerritory)
     {
         float targetVolume = somebodyEnteredOnTerritory ? 1: 0;
         
