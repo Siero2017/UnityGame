@@ -1,23 +1,23 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Detector : MonoBehaviour
 {
-    public delegate void AlarmSystem(bool isActive);
-    public event AlarmSystem SomebodyWentHouse;
+    public UnityAction<bool> ChangeValue;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.TryGetComponent<Player>(out Player player))
+        if (other.gameObject.TryGetComponent(out Player player))
         {            
-            SomebodyWentHouse?.Invoke(true);
+            ChangeValue?.Invoke(true);
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.TryGetComponent<Player>(out Player player))
+        if (other.gameObject.TryGetComponent(out Player player))
         {
-            SomebodyWentHouse?.Invoke(false);
+            ChangeValue?.Invoke(false);
         }
     }
 }
