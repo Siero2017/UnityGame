@@ -29,10 +29,10 @@ public class Alarm : MonoBehaviour
             StopCoroutine(_processChangeVolume);
         }
 
-        _processChangeVolume = StartCoroutine(AlarmActivationCoroutine(somebodyEnteredOnTerritory));
+        _processChangeVolume = StartCoroutine(ChangeVolume(somebodyEnteredOnTerritory));
     }
 
-    private IEnumerator AlarmActivationCoroutine(bool somebodyEnteredOnTerritory)
+    private IEnumerator ChangeVolume(bool somebodyEnteredOnTerritory)
     {
         float targetVolume = somebodyEnteredOnTerritory ? 1: 0;
         
