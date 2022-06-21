@@ -13,16 +13,16 @@ public class Alarm : MonoBehaviour
     {
         _audioSource = GetComponent<AudioSource>();
         _territoryCheck = GetComponent<Detector>();
-        _territoryCheck.SomebodyWentHouse += AlarmActivation;
+        _territoryCheck.SomebodyWentHouse += ActivateAlarm;
         _audioSource.Play();
     }
 
     private void OnDisable()
     {
-        _territoryCheck.SomebodyWentHouse -= AlarmActivation;
+        _territoryCheck.SomebodyWentHouse -= ActivateAlarm;
     }
 
-    private void AlarmActivation(bool somebodyEnteredOnTerritory)
+    private void ActivateAlarm(bool somebodyEnteredOnTerritory)
     {
         if (_processChangeVolume != null)
         {
@@ -34,28 +34,12 @@ public class Alarm : MonoBehaviour
 
     private IEnumerator AlarmActivationCoroutine(bool somebodyEnteredOnTerritory)
     {
-        float durationTranstion = 2f;
-        float runningTime = 0f;
-
-        if (somebodyEnteredOnTerritory)
-        {
-            while (_audioSource.volume != 1)
-            {
-                runningTime += Time.deltaTime;
-                _audioSource.volume = runningTime / durationTranstion;
-                yield return null;
-            }
-        }
-        else
-        {
-            runningTime = 2f;
-
-            while(_audioSource.volume != 0)
-            {
-                runningTime -= Time.deltaTime;
-                _audioSource.volume = runningTime / durationTranstion;
-                yield return null;
-            }
+        float targetVolume = somebodyEnteredOnTerritory ? 1: 0;
+        
+        while (_audioSource.volume != targetVolume)
+        {               
+            Mathf.MoveTowards(_audioSource.volume, targetVolume, Time.deltaTime);
+            yield return null;
         }
     }
 }
